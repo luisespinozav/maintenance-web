@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+    client:
+        image: nginx
+        container_name: ${CONTAINER_NAME}
+        ports:
+            - ${APP_PORT}:80
+        volumes:
+            - ./web:/usr/share/nginx/html
+            - ./config/nginx-dev.conf:/etc/nginx/conf.d/default.conf
+        env_file:
+            - .env
