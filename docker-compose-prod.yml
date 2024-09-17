@@ -1,10 +1,15 @@
-version: "3"
-
 services:
-    client:
+    app:
         build: .
         container_name: ${CONTAINER_NAME}
-        ports:
+        restart: unless-stopped
+        expose:
             - ${APP_PORT}:80
         env_file:
             - .env
+        networks:
+          - default
+          - proxy
+networks:
+  proxy:
+    external: true
